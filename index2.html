@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="c1">{{name}}
+    <button ng-click="add()"></button>
+</div>
+</body>
+<script>
+    var app = angular.module('myApp', ['ng']);
+    app.factory('$show',function(){
+        return{
+            fun:function(){
+                console.log(222)
+            }
+        }
+    })
+    app.controller('c1', function ($scope,$show) {
+       $scope.add=function(){
+           $show.fun();
+       }
+    })
+</script>
+</html>
