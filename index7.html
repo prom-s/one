@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="c1">
+    <button ng-click="add()"></button>
+</div>
+</body>
+<script>
+    var app = angular.module('myApp', ['ng']);
+    app.factory('$show',function(){
+        return{
+            add:function(){
+                alert('22222');
+            }
+        }
+    })
+    app.controller('c1', function ($scope,$injector) {
+          var bol=$injector.has('$show');
+        console.log(bol);
+        if(bol){
+            $scope.add=function(){
+                $injector.get('$show').add();
+            }
+        }
+    })
+</script>
+</html>

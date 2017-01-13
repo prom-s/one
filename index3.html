@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="c1">{{name}}
+    <button ng-click="dd()"></button>
+</div>
+</body>
+<script>
+    var app = angular.module('myApp', ['ng']);
+    app.service('$show',function(){
+        this.name='高凯莉';
+        this.fun=function(){
+            console.log(222)
+        }
+    })
+    app.controller('c1', function ($scope,$show) {
+        $scope.name=$show.name;
+        $scope.dd=function(){
+            $show.fun();
+        }
+    })
+</script>
+</html>

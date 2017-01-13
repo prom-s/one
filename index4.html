@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="c1">
+    <button ng-click="add()">111</button>
+</div>
+</body>
+<script>
+//    行内注入的写法  以后都是这么用
+    var app = angular.module('myApp', ['ng']);
+    app.factory('$show',function($window){
+        return{
+          showfun:function(){
+              $window.alert('222');
+          }
+        }
+    })
+    app.controller('c1', ['$scope','$show',function ($scope,$show) {
+        $scope.add = function(){
+            $show.showfun();
+        }
+    }])
+</script>
+</html>

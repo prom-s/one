@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="c1">
+    <form ng-submit="sad()" name="a1">
+        <input type="text" required ng-model="tet1" name="b1">
+        <span ng-show="a1.b1.$error.required">内容不能为空</span>
+        <span ng-show="a1.b1.$pristine">你还未输入过</span>
+        <span ng-show="a1.b1.$valid">你已经输入过</span>
+        <span ng-show="a1.b1.$invalid">验证未通过</span>
+        <button>提交</button>
+
+    </form>
+</div>
+</body>
+<script>
+    var app = angular.module('myApp', ['ng']);
+    app.controller('c1', function ($scope) {
+        $scope.sad=function(){
+            console.log($scope.tet1);
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="c1">
+    <input type="number" ng-model="num1" >
+    <input type="number" ng-model="num2" >
+    <button ng-click="jic()">222</button>
+    <p>{{res}}</p>
+</div>
+</body>
+<script>
+    var app = angular.module('myApp', ['ng']);
+    app.factory('$add',function(){
+        return{
+            addfun:function(n1,n2){
+                return n1+n2;
+            },
+            sss:function(){
+                console.log('222');
+            }
+        }
+    });
+    var jst=angular.injector(['ng','myApp']);
+    var jjj=jst.has('$add');
+    console.log(jjj);
+    if(jjj){
+        var ss=jst.get('$add');
+        console.log(ss.sss());
+    }
+    app.controller('c1', ['$scope','$add',function ($scope,$add) {
+          $scope.jic=function(){
+             $scope.res= $add.addfun($scope.num1,$scope.num2);
+          }
+    }])
+</script>
+</html>
